@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rizwan Ali Jeans Spain - Ultimate Store</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.primary {
+  background: #25D366;
+  color: white;
+}
+
+.dark {
+  background: #444;
+  color: white;
+}
+
+.cart {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: #25D366;
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: white;
+}
+
+.container {
+  padding: 20px;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  width: 220px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+.admin {
+  background: white;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  display: none;
+}
+
+input {
+  padding: 8px;
+  margin: 5px;
+  width: 90%;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Rizwan Ali Jeans Ultimate Store</h2>
+
+  <div class="cart">🛒 <span id="cartCount">0</span></div>
+
+  <div class="controls">
+    <button class="dark" onclick="toggleLang()">ES / EN</button>
+    <button class="dark" onclick="toggleAdmin()">Admin</button>
+    <button class="primary" onclick="checkout()">Checkout WhatsApp</button>
+  </div>
+</header>
+
+<!-- ADMIN
