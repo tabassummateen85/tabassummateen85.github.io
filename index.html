@@ -1,170 +1,112 @@
-update 
+update
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rizwan Ali | Jeans 15€</title>
-    <style>
-        :root {
-            --primary: #1a1a1a;
-            --accent: #d4af37;
-            --whatsapp: #25d366;
-            --light: #f8f9fa;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizwan Ali Jeans | Shop</title>
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--light); color: #333; }
+<style>
+body{font-family:Arial;margin:0;background:#f5f5f5;}
+header{background:#111;color:#fff;padding:20px;text-align:center;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:20px;}
+.card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.card img{width:100%;height:300px;object-fit:cover;}
+.card-body{padding:15px;text-align:center;}
+.price{font-size:18px;font-weight:bold;}
+button{background:#25d366;color:white;border:none;padding:10px;width:100%;margin-top:10px;font-weight:bold;cursor:pointer;}
+button:hover{background:#1ebe5d;}
 
-        header {
-            background: var(--primary);
-            color: white;
-            padding: 30px 15px;
-            text-align: center;
-            border-bottom: 4px solid var(--accent);
-        }
+.cart{
+    position:fixed;
+    right:20px;
+    top:20px;
+    background:white;
+    padding:15px;
+    width:250px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    border-radius:10px;
+}
 
-        nav { background: #333; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 100; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-
-        .hero {
-            padding: 40px 20px;
-            text-align: center;
-            background: #fff;
-            border-bottom: 2px solid #eee;
-        }
-
-        .size-badge {
-            background: #eee;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-8px); }
-        .card img { width: 100%; height: 380px; object-fit: cover; }
-        .card-info { padding: 20px; }
-        
-        .price { font-size: 1.6rem; font-weight: bold; color: #000; margin: 10px 0; }
-
-        .btn-ws {
-            display: block;
-            background: var(--whatsapp);
-            color: white;
-            padding: 12px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        .float-ws {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: var(--whatsapp);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-            text-decoration: none;
-        }
-
-        footer { background: var(--primary); color: white; text-align: center; padding: 40px; }
-    </style>
+.cart h3{margin:0 0 10px;}
+.cart-items{font-size:14px;margin-bottom:10px;}
+.checkout{
+    background:#111;
+    color:white;
+    padding:10px;
+    text-align:center;
+    cursor:pointer;
+}
+</style>
 </head>
+
 <body>
 
-<a href="https://wa.me/34602097864" class="float-ws" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
-</a>
-
 <header>
-    <h1>Rizwan Ali Jeans</h1>
-    <p>Estilo Premium | Directo a tu casa</p>
+    <h1>Rizwan Ali Jeans Store</h1>
+    <p>All Jeans 15€</p>
 </header>
 
-<nav>
-    <a href="#">Catálogo</a>
-    <a href="#">Tallas</a>
-    <a href="https://wa.me/34602097864">Contacto</a>
-</nav>
-
-<div class="hero">
-    <h2>TALLAS DISPONIBLES: 32 / 34 / 36</h2>
-    <p>Todos nuestros modelos están disponibles en estas tallas por <strong>15€</strong></p>
+<!-- CART -->
+<div class="cart">
+    <h3>🛒 Cart</h3>
+    <div class="cart-items" id="cartItems">Empty</div>
+    <div><b>Total: €<span id="total">0</span></b></div>
+    <div class="checkout" onclick="checkout()">Checkout WhatsApp</div>
 </div>
 
+<!-- PRODUCTS -->
 <div class="products">
+
     <div class="card">
         <img src="1000038360.jpg">
-        <div class="card-info">
-            <h3>Jeans Slim Deep Blue</h3>
-            <div class="size-badge">Tallas: 32 - 34 - 36</div>
-            <p class="price">15€</p>
-            <a href="https://wa.me/34602097864?text=Hola!%20Quiero%20los%20Jeans%20Deep%20Blue" class="btn-ws">Pedir por WhatsApp</a>
+        <div class="card-body">
+            <h3>Deep Blue</h3>
+            <div class="price">15€</div>
+            <button onclick="addToCart('Deep Blue')">Add to Cart</button>
         </div>
     </div>
 
     <div class="card">
         <img src="1000038362.jpg">
-        <div class="card-info">
-            <h3>Jeans Light Wash</h3>
-            <div class="size-badge">Tallas: 32 - 34 - 36</div>
-            <p class="price">15€</p>
-            <a href="https://wa.me/34602097864?text=Hola!%20Quiero%20los%20Jeans%20Light%20Wash" class="btn-ws">Pedir por WhatsApp</a>
+        <div class="card-body">
+            <h3>Light Wash</h3>
+            <div class="price">15€</div>
+            <button onclick="addToCart('Light Wash')">Add to Cart</button>
         </div>
     </div>
 
     <div class="card">
         <img src="1000038356.jpg">
-        <div class="card-info">
-            <h3>Jeans Charcoal Grey</h3>
-            <div class="size-badge">Tallas: 32 - 34 - 36</div>
-            <p class="price">15€</p>
-            <a href="https://wa.me/34602097864?text=Hola!%20Quiero%20los%20Jeans%20Charcoal" class="btn-ws">Pedir por WhatsApp</a>
+        <div class="card-body">
+            <h3>Grey Jeans</h3>
+            <div class="price">15€</div>
+            <button onclick="addToCart('Grey Jeans')">Add to Cart</button>
         </div>
     </div>
 
-    <div class="card">
-        <img src="1000038359.jpg">
-        <div class="card-info">
-            <h3>Nueva Colección</h3>
-            <div class="size-badge">Stock Limitado</div>
-            <p class="price">15€</p>
-            <a href="https://wa.me/34602097864?text=Hola!%20Quiero%20ver%20la%20nueva%20colección" class="btn-ws">Ver más modelos</a>
-        </div>
-    </div>
 </div>
 
-<footer>
-    <p><strong>Rizwan Ali Jeans</strong></p>
-    <p>📍 Envíos rápidos | 📱 +34 602 09 78 64</p>
-</footer>
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(product){
+    cart.push(product);
+    total += 15;
+    updateCart();
+}
+
+function updateCart(){
+    document.getElementById("cartItems").innerHTML = cart.join("<br>");
+    document.getElementById("total").innerText = total;
+}
+
+function checkout(){
+    let msg = "Hello, I want to order:%0A" + cart.join("%0A") + "%0ATotal: " + total + "€";
+    window.open("https://wa.me/34602097864?text=" + msg, "_blank");
+}
+</script>
 
 </body>
 </html>
