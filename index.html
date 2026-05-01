@@ -1,194 +1,235 @@
-update  meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rizwan Ali Jeans | Elite Store</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>
-:root {
-    --primary:#0f0f0f;
-    --accent:#d4af37;
-    --whatsapp:#25d366;
-    --bg:#fafafa;
-}
+update  
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizwan Ali Jeans | Elite Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:#0f0f0f;
+            --accent:#d4af37;
+            --whatsapp:#25d366;
+            --bg:#fafafa;
+        }
 
-*{box-sizing:border-box;}
+        *{box-sizing:border-box;}
 
-body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:var(--bg);
-}
+        body {
+            margin:0;
+            font-family:'Poppins',sans-serif;
+            background:var(--bg);
+        }
 
-header{
-    background:linear-gradient(135deg,#000,#222);
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-}
+        header {
+            background:linear-gradient(135deg,#000,#222);
+            color:white;
+            text-align:center;
+            padding:60px 20px;
+        }
 
-header h1{
-    margin:0;
-    letter-spacing:3px;
-}
+        header h1 {
+            margin:0;
+            letter-spacing:3px;
+        }
 
-nav{
-    background:#111;
-    padding:12px;
-    text-align:center;
-    position:sticky;
-    top:0;
-}
+        nav {
+            background:#111;
+            padding:12px;
+            text-align:center;
+            position:sticky;
+            top:0;
+            z-index: 100;
+        }
 
-nav a{
-    color:white;
-    margin:0 15px;
-    text-decoration:none;
-    font-weight:600;
-}
+        nav a {
+            color:white;
+            margin:0 15px;
+            text-decoration:none;
+            font-weight:600;
+        }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:30px;
-    padding:40px;
-    max-width:1200px;
-    margin:auto;
-}
+        .products {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:30px;
+            padding:40px;
+            max-width:1200px;
+            margin:auto;
+        }
 
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    transition:0.3s;
-    cursor:pointer;
-}
+        .card {
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+            transition:0.3s;
+            cursor:pointer;
+        }
 
-.card:hover{
-    transform:translateY(-10px) scale(1.03);
-}
+        .card:hover {
+            transform:translateY(-10px) scale(1.03);
+        }
 
-.card img{
-    width:100%;
-    height:380px;
-    object-fit:cover;
-    transition:0.4s;
-}
+        .card img {
+            width:100%;
+            height:380px;
+            object-fit:cover;
+            transition:0.4s;
+        }
 
-.card:hover img{
-    transform:scale(1.08);
-}
+        .card-info {
+            padding:20px;
+            text-align:center;
+        }
 
-.card-info{
-    padding:20px;
-    text-align:center;
-}
+        .price {
+            font-size:22px;
+            font-weight:700;
+            color: #e63946;
+        }
 
-.price{
-    font-size:22px;
-    font-weight:700;
-}
+        .btn {
+            display:block;
+            margin-top:10px;
+            background:var(--whatsapp);
+            color:white;
+            padding:12px;
+            border-radius:6px;
+            text-decoration:none;
+            font-weight: bold;
+        }
 
-.btn{
-    display:block;
-    margin-top:10px;
-    background:var(--whatsapp);
-    color:white;
-    padding:12px;
-    border-radius:6px;
-    text-decoration:none;
-}
+        .modal {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.8);
+            justify-content:center;
+            align-items:center;
+            z-index: 1000;
+        }
 
-.modal{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    justify-content:center;
-    align-items:center;
-}
+        .modal-content {
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            max-width:400px;
+            width:90%;
+            text-align:center;
+            position: relative;
+        }
 
-.modal-content{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    max-width:400px;
-    width:90%;
-    text-align:center;
-}
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            cursor:pointer;
+            font-size:24px;
+            font-weight: bold;
+        }
 
-.close{
-    float:right;
-    cursor:pointer;
-    font-size:20px;
-}
+        select {
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+        }
 
-select{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
+        footer {
+            background:#111;
+            color:white;
+            text-align:center;
+            padding:40px;
+        }
+    </style>
+</head>
+<body>
 
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:40px;
-}
+<header>
+    <h1>RIZWAN ALI JEANS</h1>
+    <p>Elite Denim Collection</p>
+</header>
 
-</style></head><body><header>
-<h1>RIZWAN ALI JEANS</h1>
-<p>Elite Denim Collection</p>
-</header><nav>
-<a href="#">Inicio</a>
-<a href="#">Colección</a>
-<a href="https://wa.me/34602097864">Contacto</a>
-</nav><div class="products"><div class="card" onclick="openModal('Deep Blue','IMG-20260418-WA0001.jpg')">
-<img src="IMG-20260418-WA0001.jpg">
-<div class="card-info">
-<h3>Deep Blue</h3>
-<p class="price">15€</p>
+<nav>
+    <a href="#">Inicio</a>
+    <a href="https://wa.me/34602097864">Contacto</a>
+</nav>
+
+<div class="products">
+    <div class="card" onclick="openModal('Deep Blue','IMG-20260418-WA0001.jpg')">
+        <img src="IMG-20260418-WA0001.jpg" alt="Deep Blue">
+        <div class="card-info">
+            <h3>Deep Blue</h3>
+            <p class="price">15€</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openModal('Grey Slim','IMG-20260418-WA0002.jpg')">
+        <img src="IMG-20260418-WA0002.jpg" alt="Grey Slim">
+        <div class="card-info">
+            <h3>Grey Slim</h3>
+            <p class="price">15€</p>
+        </div>
+    </div>
+
+    <div class="card" onclick="openModal('Light Wash','IMG-20260418-WA0003.jpg')">
+        <img src="IMG-20260418-WA0003.jpg" alt="Light Wash">
+        <div class="card-info">
+            <h3>Light Wash</h3>
+            <p class="price">15€</p>
+        </div>
+    </div>
 </div>
-</div><div class="card" onclick="openModal('Light Wash','1000038362.jpg')">
-<img IMG-20260418-WA0003.jpg
-<div class="card-info">
-<h3>Light Wash</h3>
-<p class="price">15€</p>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImg" style="width:100%;height:300px;object-fit:cover;border-radius: 8px;">
+        <h3 id="modalTitle"></h3>
+        <p>Selecciona tu talla:</p>
+        <select id="size">
+            <option>32</option>
+            <option>34</option>
+            <option>36</option>
+            <option>38</option>
+            <option>40</option>
+        </select>
+        <a id="buyBtn" class="btn">Comprar por WhatsApp</a>
+    </div>
 </div>
-</div><div class="card" onclick="openModal('Grey','1000038356.jpg')">
-<img src="./1000038356.jpg">
-<div class="card-info">
-<h3>Grey</h3>
-<p class="price">15€</p>
-</div>
-</div></div><div class="modal" id="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">&times;</span>
-<img id="modalImg" style="width:100%;height:250px;object-fit:cover;">
-<h3 id="modalTitle"></h3>
-<select id="size">
-<option>32</option>
-<option>34</option>
-<option>36</option>
-</select>
-<a id="buyBtn" class="btn">Comprar por WhatsApp</a>
-</div>
-</div><footer>
-<p>📦 Entrega 24-48h | 📱 +34 602 09 78 64</p>
-</footer><script>
-function openModal(name,img){
-    document.getElementById('modal').style.display='flex';
-    document.getElementById('modalImg').src='./'+img;
-    document.getElementById('modalTitle').innerText=name;
-    document.getElementById('buyBtn').onclick=function(){
-        let size=document.getElementById('size').value;
-        let msg=`Hola quiero ${name} talla ${size}`;
+
+<footer>
+    <p>📦 Entrega 24-48h | 📱 +34 602 09 78 64</p>
+</footer>
+
+<script>
+function openModal(name, img){
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modalImg').src = img;
+    document.getElementById('modalTitle').innerText = name;
+    
+    document.getElementById('buyBtn').onclick = function(){
+        let size = document.getElementById('size').value;
+        let msg = `Hola, quiero los jeans ${name} en talla ${size}`;
         window.open(`https://wa.me/34602097864?text=${encodeURIComponent(msg)}`);
     }
 }
 
 function closeModal(){
-    document.getElementById('modal').style.display='none';
+    document.getElementById('modal').style.display = 'none';
 }
-</script></body>
+
+window.onclick = function(event) {
+    let modal = document.getElementById('modal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+</script>
+
+</body>
 </html>
