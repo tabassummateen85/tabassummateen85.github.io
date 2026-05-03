@@ -6,249 +6,186 @@ update
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rizwan Ali Jeans</title>
+<title>Rizwan Ali Jeans | WhatsApp Shop</title>
 
 <style>
   body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f4f4;
   }
 
   /* NAVBAR */
   .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
+    justify-content: center;
+    padding: 20px;
     background: #000;
-    color: white;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .navbar h1 {
-    margin: 0;
-    font-size: 24px;
-    letter-spacing: 2px;
-  }
-
-  .navbar nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
   }
 
   /* HERO */
   .hero {
-    height: 70vh;
+    height: 50vh;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
                 url('IMG-20260418-WA0001.jpg') center/cover no-repeat;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     color: white;
-  }
-
-  .hero h2 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-
-  .btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: white;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s;
-  }
-
-  .btn:hover {
-    background: #ddd;
-  }
-
-  /* PRODUCTS */
-  .section-title {
     text-align: center;
-    margin-top: 40px;
-    font-size: 2rem;
   }
 
+  /* PRODUCTS SECTION */
   .products {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 40px 10px;
   }
 
   .card {
-    width: 280px;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #eee;
+    background: white;
+    width: 300px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 8px;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  }
-
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  }
-
-  .card img {
-    width: 100%;
-    height: auto;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 15px;
-  }
-
-  /* SIZE SELECT & BUTTON */
-  .size-select {
-    display: block;
-    margin: 15px auto;
-    padding: 10px;
-    width: 90%;
-    border: 1px solid #333;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-
-  .add-btn {
-    width: 90%;
-    padding: 12px;
-    background: #000;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: 0.3s;
   }
 
-  .add-btn:hover {
-    background: #444;
+  .card:hover { transform: translateY(-5px); }
+
+  .card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
-  /* CART BOX */
-  #cartBox {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #000;
+  .card h3 { margin: 15px 0 5px; font-size: 20px; }
+
+  /* SIZE SELECT */
+  .size-select {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* WHATSAPP BUTTON */
+  .whatsapp-btn {
+    width: 100%;
+    padding: 12px;
+    background: #25D366;
     color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
+    border: none;
+    border-radius: 4px;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 1001;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
   }
 
-  /* FOOTER */
+  .whatsapp-btn:hover { background: #128C7E; }
+
   footer {
     background: #000;
-    color: #888;
+    color: #fff;
     text-align: center;
-    padding: 30px;
-    margin-top: 40px;
+    padding: 20px;
+    margin-top: 50px;
   }
 
-  /* MOBILE RESPONSIVENESS */
-  @media (max-width: 768px) {
-    .hero h2 { font-size: 2rem; }
+  @media (max-width: 600px) {
     .card { width: 90%; }
   }
 </style>
 </head>
-
 <body>
 
 <header class="navbar">
-  <h1>RIZWAN ALI</h1>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#products">Shop</a>
-  </nav>
+  <h1>Rizwan Ali Jeans</h1>
 </header>
 
-<section id="home" class="hero">
-  <div>
-    <h2>Premium Jeans Collection</h2>
-    <p>Modern Style. Perfect Fit. Crafted for You.</p>
-    <a href="#products" class="btn">Shop Now</a>
-  </div>
+<section class="hero">
+  <h2>Premium Collection 2026</h2>
+  <p>Select your size and order via WhatsApp</p>
 </section>
 
-<h2 class="section-title">New Arrivals</h2>
-
-<section id="products" class="products">
+<section class="products">
 
   <div class="card">
-    <img src="IMG-20260418-WA0001.jpg" alt="Blue Denim Jeans">
-    <h3>Classic Blue Denim</h3>
-    <p>Premium Stretch Cotton</p>
-
+    <img src="IMG-20260418-WA0001.jpg" alt="Blue Denim">
+    <h3>Royal Blue Denim</h3>
     <select class="size-select">
       <option value="">Select Size</option>
       <option value="32">32</option>
       <option value="34">34</option>
       <option value="36">36</option>
     </select>
-
-    <button class="add-btn" onclick="addToCart(this)">Add to Cart</button>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
   </div>
 
   <div class="card">
     <img src="IMG-20260418-WA0002.jpg" alt="Black Jeans">
     <h3>Midnight Black</h3>
-    <p>Slim Fit Design</p>
-
     <select class="size-select">
       <option value="">Select Size</option>
       <option value="32">32</option>
       <option value="34">34</option>
       <option value="36">36</option>
     </select>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
+  </div>
 
-    <button class="add-btn" onclick="addToCart(this)">Add to Cart</button>
+  <div class="card">
+    <img src="IMG-20260418-WA0003.jpg" alt="Grey/Other Jeans">
+    <h3>Urban Grey</h3>
+    <select class="size-select">
+      <option value="">Select Size</option>
+      <option value="32">32</option>
+      <option value="34">34</option>
+      <option value="36">36</option>
+    </select>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
   </div>
 
 </section>
 
-<div id="cartBox">🛒 Items: 0</div>
-
 <footer>
-  <p>© 2026 Rizwan Ali Jeans | Quality Guaranteed</p>
+  <p>© 2026 Rizwan Ali Jeans | Quality You Can Trust</p>
 </footer>
 
 <script>
-let cartCount = 0;
-
-function addToCart(button) {
+function orderNow(button) {
+  // --- CHANGE THIS TO YOUR NUMBER ---
+  const phoneNumber = "923000000000"; 
+  
   const card = button.parentElement;
-  const select = card.querySelector(".size-select");
   const productName = card.querySelector("h3").innerText;
-  const size = select.value;
+  const size = card.querySelector(".size-select").value;
 
   if (size === "") {
-    alert("Please select a size (32, 34, or 36) before adding to cart!");
-    select.focus();
+    alert("Please select a size (32, 34, or 36) first!");
     return;
   }
 
-  cartCount++;
-  document.getElementById("cartBox").innerText = "🛒 Items: " + cartCount;
+  // Create the message text
+  const message = `Hello Rizwan Ali Jeans! I would like to order:%0A%0A*Product:* ${productName}%0A*Size:* ${size}`;
+  
+  // WhatsApp Link
+  const url = `https://wa.me/${phoneNumber}?text=${message}`;
 
-  alert(`Success! ${productName} (Size ${size}) added to your cart.`);
+  // Open WhatsApp
+  window.open(url, '_blank');
 }
 </script>
 
