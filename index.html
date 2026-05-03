@@ -1,300 +1,283 @@
 update 
 
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rizwan Ali Jeans | Enterprise Shop</title>
+  <title>Rizwan Ali Jeans | Enterprise Edition</title>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    :root { --primary: #000; --accent: #25D366; --danger: #ff4444; --bg: #f8f8f8; }
-    * { box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { margin: 0; background: var(--bg); color: #111; }
-    
-    .hidden { display: none !important; }
-    .btn { cursor: pointer; border: none; font-weight: bold; transition: 0.3s; padding: 12px; border-radius: 4px; }
+    :root { --p: #000; --s: #25D366; --err: #ff3333; --bg: #fdfdfd; --card: #ffffff; }
+    * { box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+    body { margin: 0; background: var(--bg); color: var(--p); overflow-x: hidden; }
 
-    /* NAVBAR */
+    /* LAYOUT ENGINE */
+    .view { display: none; padding: 40px 5%; min-height: 90vh; animation: fadeIn 0.4s ease; }
+    .view.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* NAVIGATION */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 5%; background: var(--primary); color: white;
-      position: sticky; top: 0; z-index: 1000;
+      padding: 15px 5%; background: var(--p); color: white; position: sticky; top: 0; z-index: 1000;
     }
-    .nav-links { display: flex; align-items: center; gap: 20px; }
-    .nav-links a { color: white; text-decoration: none; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: white; text-decoration: none; cursor: pointer; font-size: 13px; font-weight: 600; text-transform: uppercase; }
+    .cart-trigger { position: relative; cursor: pointer; display: flex; align-items: center; }
+    #cart-badge { position: absolute; top: -8px; right: -12px; background: var(--s); color: white; font-size: 10px; padding: 2px 6px; border-radius: 10px; }
 
-    /* SECTIONS */
-    section { padding: 40px 5%; min-height: 80vh; }
-    .section-title { text-align: center; margin-bottom: 30px; font-size: 2rem; font-weight: 800; }
-
-    /* PRODUCT GRID */
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
-    }
-    .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-    .card img { width: 100%; height: 380px; object-fit: cover; border-radius: 4px; }
-    .stock-tag { font-size: 12px; font-weight: bold; color: var(--danger); }
-    .stock-ok { color: var(--accent); }
-
-    /* CART SIDEBAR */
-    .sidebar {
-      position: fixed; top: 0; right: -100%; width: 380px; height: 100%;
-      background: white; z-index: 2000; transition: 0.4s; padding: 20px;
-      display: flex; flex-direction: column; box-shadow: -5px 0 20px rgba(0,0,0,0.2);
-    }
-    .sidebar.active { right: 0; }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; }
-    .qty-ctrl { display: flex; align-items: center; gap: 10px; }
-    .qty-btn { background: #eee; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px; }
+    /* SHOP UI */
+    .filter-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+    .f-btn { padding: 8px 18px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 30px; font-size: 14px; }
+    .f-btn.active { background: var(--p); color: white; border-color: var(--p); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+    .card { background: var(--card); border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .card img { width: 100%; height: 400px; object-fit: cover; }
+    .card-body { padding: 20px; }
+    .price-tag { font-size: 1.4rem; font-weight: 900; }
+    
+    /* CART PAGE */
+    .cart-container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; border: 1px solid #eee; }
+    .cart-row { display: grid; grid-template-columns: 100px 1fr 120px 80px; gap: 20px; align-items: center; padding: 15px 0; border-bottom: 1px solid #f5f5f5; }
+    .checkout-box { margin-top: 30px; padding-top: 20px; border-top: 2px solid var(--p); text-align: right; }
 
     /* ADMIN PANEL */
-    .admin-container { max-width: 800px; margin: 0 auto; }
-    .admin-form { background: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
-    .admin-form input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 4px; }
-    .admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
-    .admin-table th, .admin-table td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .input-group input, .input-group select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+    .stock-low { color: var(--err); font-weight: bold; }
 
-    footer { background: #000; color: #fff; text-align: center; padding: 30px; margin-top: 40px; }
+    /* BUTTONS */
+    .btn { padding: 14px 24px; border: none; font-weight: bold; cursor: pointer; border-radius: 6px; transition: 0.3s; text-align: center; text-decoration: none; display: inline-block; }
+    .btn-p { background: var(--p); color: white; width: 100%; }
+    .btn-s { background: var(--s); color: white; }
 
-    @media (max-width: 480px) { .sidebar { width: 100%; } .navbar h1 { font-size: 16px; } }
+    @media (max-width: 768px) { .admin-grid, .cart-row { grid-template-columns: 1fr; } .cart-row img { display: none; } }
   </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <div style="font-weight: 900; font-size: 20px; letter-spacing: 2px;">RIZWAN ALI JEANS</div>
+  <nav class="navbar">
+    <div onclick="navigateTo('shop')" style="cursor:pointer; font-weight:900; letter-spacing:2px;">RIZWAN ALI JEANS</div>
     <div class="nav-links">
-      <a onclick="showPage('shop')">Shop</a>
-      <a onclick="showPage('admin')">Admin</a>
-      <div style="position: relative; cursor: pointer;" onclick="toggleCart()">
-        <i data-lucide="shopping-cart"></i>
-        <span id="cart-count" style="position:absolute; top:-10px; right:-10px; background:var(--accent); color:white; border-radius:50%; padding:2px 6px; font-size:10px; font-weight:bold;">0</span>
+      <a onclick="navigateTo('shop')">Shop</a>
+      <a onclick="navigateTo('admin')">Admin</a>
+      <div class="cart-trigger" onclick="navigateTo('cart')">
+        <i data-lucide="shopping-bag"></i>
+        <span id="cart-badge">0</span>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <section id="page-shop">
-    <h2 class="section-title">Premium Collection — 15€</h2>
-    <div id="product-grid" class="grid"></div>
+  <section id="shop" class="view active">
+    <div class="filter-bar" id="filters">
+      <button class="f-btn active" onclick="filterShop('All')">All</button>
+    </div>
+    <div id="shop-grid" class="grid"></div>
   </section>
 
-  <section id="page-admin" class="hidden">
-    <div class="admin-container">
-      <h2 class="section-title">Stock Management</h2>
-      <div class="admin-form">
+  <section id="cart" class="view">
+    <h2 style="text-align:center; font-size: 2.5rem;">Shopping Cart</h2>
+    <div class="cart-container">
+      <div id="cart-list"></div>
+      <div id="cart-summary" class="checkout-box">
+        <h3 id="grand-total">Total: 0€</h3>
+        <button class="btn btn-s" onclick="startPaymentFlow()">PROCEED TO CHECKOUT</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="admin" class="view">
+    <h2 class="section-title">Store Management</h2>
+    <div class="admin-grid">
+      <div class="input-group" style="background:white; padding:25px; border-radius:12px; border:1px solid #eee;">
         <h3>Add New Product</h3>
-        <input type="text" id="adm-name" placeholder="Product Name (e.g. Blue Denim)">
-        <input type="text" id="adm-color" placeholder="Color">
-        <input type="text" id="adm-price" value="15€" placeholder="Price">
-        <input type="number" id="adm-stock" placeholder="Stock Quantity">
-        <input type="text" id="adm-img" placeholder="Image Filename (e.g. IMG-20260418-WA0001.jpg)">
-        <button class="btn" style="background:var(--primary); color:white; width:100%" onclick="adminAddProduct()">ADD TO INVENTORY</button>
+        <input type="text" id="a-name" placeholder="Product Name">
+        <input type="text" id="a-color" placeholder="Color (e.g. Light Blue)">
+        <input type="number" id="a-price" value="15" placeholder="Price (€)">
+        <input type="number" id="a-stock" placeholder="Initial Stock">
+        <input type="text" id="a-img" placeholder="Image File (e.g. IMG-20260418-WA0001.jpg)">
+        <button class="btn btn-p" onclick="addProduct()">SAVE TO DATABASE</button>
       </div>
-
-      <table class="admin-table">
-        <thead style="background:#eee"><tr><th>Item</th><th>Price</th><th>Stock</th><th>Action</th></tr></thead>
-        <tbody id="admin-stock-list"></tbody>
-      </table>
+      <div style="background:white; padding:25px; border-radius:12px; border:1px solid #eee; overflow-x:auto;">
+        <h3>Live Inventory</h3>
+        <table style="width:100%; text-align:left; border-collapse:collapse;">
+          <tbody id="admin-table-body"></tbody>
+        </table>
+      </div>
     </div>
   </section>
-
-  <div id="cart-sidebar" class="sidebar">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-      <h2>Your Cart</h2>
-      <button onclick="toggleCart()" style="border:none; background:none; font-size:24px; cursor:pointer;">&times;</button>
-    </div>
-    <div id="cart-content" style="flex-grow:1; overflow-y:auto;"></div>
-    <div id="cart-footer" class="hidden" style="border-top: 1px solid #eee; padding-top: 20px;">
-      <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold; font-size:1.2rem;">
-        <span>Total:</span>
-        <span id="cart-total">0€</span>
-      </div>
-      <button class="btn" style="background:var(--accent); color:white; width:100%; font-size:1.1rem;" onclick="checkoutWhatsApp()">
-        CHECKOUT VIA WHATSAPP
-      </button>
-    </div>
-  </div>
-
-  <footer>
-    <p>© 2026 Rizwan Ali Jeans | Spain: +34 602 09 78 64</p>
-  </footer>
 
   <script>
-    // --- DB SETUP ---
-    const defaultProducts = [
-      { id: 1, name: "Light Blue Denim", color: "Light Blue", price: "15€", img: "IMG-20260418-WA0001.jpg", stock: 10 },
-      { id: 2, name: "Dark Blue Denim", color: "Dark Blue", price: "15€", img: "IMG-20260418-WA0002.jpg", stock: 10 },
-      { id: 3, name: "Classic Black Jeans", color: "Black", price: "15€", img: "IMG-20260418-WA0003.jpg", stock: 10 }
+    // --- CORE DATABASE ---
+    const defaultData = [
+      { id: 1, name: "Light Denim Slim", color: "Light Blue", price: 15, stock: 12, img: "IMG-20260418-WA0001.jpg" },
+      { id: 2, name: "Midnight Tapered", color: "Black", price: 15, stock: 8, img: "IMG-20260418-WA0003.jpg" },
+      { id: 3, name: "Oceanic Straight", color: "Dark Blue", price: 15, stock: 15, img: "IMG-20260418-WA0002.jpg" }
     ];
 
-    let db = JSON.parse(localStorage.getItem('rizwan_db')) || defaultProducts;
-    let cart = JSON.parse(localStorage.getItem('rizwan_cart')) || [];
+    let db = JSON.parse(localStorage.getItem('rizwan_pro_db')) || defaultData;
+    let cart = JSON.parse(localStorage.getItem('rizwan_pro_cart')) || [];
 
-    // --- NAVIGATION ---
-    function showPage(page) {
-      document.getElementById('page-shop').classList.add('hidden');
-      document.getElementById('page-admin').classList.add('hidden');
-      document.getElementById(`page-${page}`).classList.remove('hidden');
-      if(page === 'admin') renderAdmin();
-      if(page === 'shop') renderShop();
+    // --- NAVIGATION ENGINE ---
+    function navigateTo(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
       window.scrollTo(0,0);
+      if(viewId === 'shop') renderShop();
+      if(viewId === 'cart') renderCartPage();
+      if(viewId === 'admin') renderAdmin();
     }
 
-    // --- SHOP ---
-    function renderShop() {
-      const grid = document.getElementById('product-grid');
-      grid.innerHTML = db.map(p => `
+    // --- SHOP LOGIC ---
+    function renderShop(filter = 'All') {
+      const grid = document.getElementById('shop-grid');
+      const colors = ['All', ...new Set(db.map(p => p.color))];
+      
+      document.getElementById('filters').innerHTML = colors.map(c => `
+        <button class="f-btn ${filter === c ? 'active' : ''}" onclick="renderShop('${c}')">${c}</button>
+      `).join('');
+
+      const products = filter === 'All' ? db : db.filter(p => p.color === filter);
+      grid.innerHTML = products.map(p => `
         <div class="card">
           <img src="${p.img}">
-          <div style="padding-top:10px;">
+          <div class="card-body">
             <h3>${p.name}</h3>
-            <p style="color:#666; margin: 5px 0;">${p.color}</p>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-              <span style="font-weight:900; font-size:1.2rem;">${p.price}</span>
-              <span class="stock-tag ${p.stock > 0 ? 'stock-ok' : ''}">
-                ${p.stock > 0 ? p.stock + ' in stock' : 'Out of Stock'}
-              </span>
+            <p style="color:gray; font-size:14px; margin-top:-10px;">${p.color} | ${p.stock > 0 ? p.stock + ' left' : 'Out of Stock'}</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:15px 0;">
+              <span class="price-tag">${p.price}€</span>
+              <select id="size-${p.id}" style="padding:5px;">
+                <option value="32">32</option><option value="34">34</option><option value="36">36</option>
+              </select>
             </div>
-            <select id="size-${p.id}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:4px; border:1px solid #ddd;">
-              <option value="">Select Size</option>
-              <option value="32">32</option><option value="34">34</option><option value="36">36</option>
-            </select>
-            <button class="btn" 
-              style="background:var(--primary); color:white; width:100%; opacity:${p.stock > 0 ? 1 : 0.4}"
-              onclick="${p.stock > 0 ? `addToCart(${p.id})` : ''}">
-              ${p.stock > 0 ? 'ADD TO CART' : 'SOLD OUT'}
+            <button class="btn btn-p" onclick="addToCart(${p.id})" ${p.stock === 0 ? 'disabled' : ''}>
+              ${p.stock > 0 ? 'ADD TO BAG' : 'SOLD OUT'}
             </button>
           </div>
         </div>
       `).join('');
     }
 
-    // --- CART ---
+    // --- CART LOGIC ---
     function addToCart(id) {
       const size = document.getElementById(`size-${id}`).value;
-      if(!size) return alert("Please select a size first!");
-      
       const product = db.find(p => p.id === id);
-      const existing = cart.find(item => item.id === id && item.size === size);
+      const existing = cart.find(i => i.id === id && i.size === size);
 
       if(existing) {
         if(existing.qty < product.stock) existing.qty++;
-        else alert("Reached maximum available stock!");
+        else return alert("No more stock available!");
       } else {
         cart.push({ ...product, size, qty: 1 });
       }
-      
-      updateCartUI();
-      toggleCart(true);
+      updateUI();
+      alert("Added to bag!");
     }
 
-    function updateCartUI() {
-      localStorage.setItem('rizwan_cart', JSON.stringify(cart));
-      document.getElementById('cart-count').innerText = cart.reduce((acc, item) => acc + item.qty, 0);
+    function renderCartPage() {
+      const list = document.getElementById('cart-list');
+      const summary = document.getElementById('cart-summary');
       
-      let total = cart.reduce((acc, item) => acc + (parseInt(item.price) * item.qty), 0);
-      document.getElementById('cart-total').innerText = total + "€";
-      
-      const content = document.getElementById('cart-content');
       if(cart.length === 0) {
-        content.innerHTML = "<p style='text-align:center; margin-top:50px; color:#888;'>Your cart is empty.</p>";
-        document.getElementById('cart-footer').classList.add('hidden');
+        list.innerHTML = `<div style="text-align:center; padding:50px;"><i data-lucide="shopping-cart" size="48"></i><p>Your bag is empty.</p><button class="btn btn-p" onclick="navigateTo('shop')">Go Shopping</button></div>`;
+        summary.style.display = 'none';
       } else {
-        document.getElementById('cart-footer').classList.remove('hidden');
-        content.innerHTML = cart.map((item, index) => `
-          <div class="cart-item">
-            <div>
-              <strong>${item.name}</strong><br>
-              <small>Size: ${item.size} | ${item.price} each</small>
+        summary.style.display = 'block';
+        list.innerHTML = cart.map((item, idx) => `
+          <div class="cart-row">
+            <img src="${item.img}" style="width:80px; border-radius:8px;">
+            <div><strong>${item.name}</strong><br><small>Size: ${item.size}</small></div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <button class="f-btn" onclick="updateQty(${idx}, -1)" style="padding:2px 10px;">-</button>
+              <span>${item.qty}</span>
+              <button class="f-btn" onclick="updateQty(${idx}, 1)" style="padding:2px 10px;">+</button>
             </div>
-            <div class="qty-ctrl">
-              <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-              <span style="font-weight:bold">${item.qty}</span>
-              <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-            </div>
+            <div style="font-weight:bold;">${item.price * item.qty}€</div>
           </div>
         `).join('');
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        document.getElementById('grand-total').innerText = `Total: ${total}€`;
       }
+      lucide.createIcons();
     }
 
-    function changeQty(index, delta) {
-      const item = cart[index];
+    function updateQty(idx, change) {
+      const item = cart[idx];
       const product = db.find(p => p.id === item.id);
-      if(delta === 1 && item.qty < product.stock) item.qty++;
-      else if(delta === -1) item.qty--;
-      if(item.qty <= 0) cart.splice(index, 1);
-      updateCartUI();
+      if(change === 1 && item.qty < product.stock) item.qty++;
+      else if(change === -1) item.qty--;
+      if(item.qty === 0) cart.splice(idx, 1);
+      updateUI();
+      renderCartPage();
     }
 
-    function toggleCart(open = null) {
-      const side = document.getElementById('cart-sidebar');
-      if(open === true) side.classList.add('active');
-      else side.classList.toggle('active');
-    }
-
-    // --- ADMIN ---
+    // --- ADMIN LOGIC ---
     function renderAdmin() {
-      const list = document.getElementById('admin-stock-list');
-      list.innerHTML = db.map(p => `
-        <tr>
-          <td><strong>${p.name}</strong></td>
-          <td>${p.price}</td>
-          <td><input type="number" value="${p.stock}" onchange="updateStock(${p.id}, this.value)" style="width:60px; padding:5px;"></td>
-          <td><button onclick="deleteProduct(${p.id})" style="color:var(--danger); border:none; background:none; cursor:pointer; font-weight:bold;">Remove</button></td>
+      const body = document.getElementById('admin-table-body');
+      body.innerHTML = db.map(p => `
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:10px;"><strong>${p.name}</strong></td>
+          <td class="${p.stock < 5 ? 'stock-low' : ''}">${p.stock} units</td>
+          <td><button onclick="deleteProd(${p.id})" style="color:red; background:none; border:none; cursor:pointer;">Delete</button></td>
         </tr>
       `).join('');
     }
 
-    function adminAddProduct() {
-      const name = document.getElementById('adm-name').value;
-      const color = document.getElementById('adm-color').value;
-      const price = document.getElementById('adm-price').value;
-      const stock = parseInt(document.getElementById('adm-stock').value);
-      const img = document.getElementById('adm-img').value;
-      if(!name || !price || isNaN(stock)) return alert("Please fill all fields correctly.");
+    function addProduct() {
+      const name = document.getElementById('a-name').value;
+      const stock = parseInt(document.getElementById('a-stock').value);
+      const img = document.getElementById('a-img').value;
+      const price = parseInt(document.getElementById('a-price').value);
+      const color = document.getElementById('a-color').value;
+
+      if(!name || isNaN(stock) || !img) return alert("Fill all fields!");
+
       db.push({ id: Date.now(), name, color, price, stock, img });
-      saveDB(); renderAdmin(); alert("Product added successfully!");
+      save(); renderAdmin(); alert("Product Added!");
     }
 
-    function updateStock(id, val) {
-      const p = db.find(prod => prod.id === id);
-      p.stock = parseInt(val);
-      saveDB();
+    function deleteProd(id) {
+      db = db.filter(p => p.id !== id);
+      save(); renderAdmin();
     }
 
-    function deleteProduct(id) {
-      if(confirm("Delete this product?")) {
-        db = db.filter(p => p.id !== id);
-        saveDB(); renderAdmin();
+    // --- SIMULATED PAYMENT & WHATSAPP ---
+    function startPaymentFlow() {
+      if(confirm("Ready to complete order? This will summarize your bag and open WhatsApp.")) {
+        const phone = "34602097864";
+        let msg = `*NEW ORDER - RIZWAN ALI*%0A--------------------------%0A`;
+        cart.forEach(item => {
+          msg += `• ${item.name} | Size ${item.size} | x${item.qty} (${item.price * item.qty}€)%0A`;
+          const p = db.find(orig => orig.id === item.id);
+          if(p) p.stock -= item.qty;
+        });
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        msg += `--------------------------%0A*TOTAL: ${total}€*%0A%0APlease confirm delivery!`;
+        
+        save();
+        cart = [];
+        updateUI();
+        window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+        navigateTo('shop');
       }
     }
 
-    function saveDB() { localStorage.setItem('rizwan_db', JSON.stringify(db)); }
-
-    // --- CHECKOUT ---
-    function checkoutWhatsApp() {
-      const phone = "34602097864";
-      let total = document.getElementById('cart-total').innerText;
-      let msg = `*NEW ORDER - RIZWAN ALI JEANS*%0A--------------------------%0A`;
-      
-      cart.forEach(item => {
-        msg += `• ${item.name}%0A  Size: ${item.size} x${item.qty} (${parseInt(item.price) * item.qty}€)%0A`;
-        const p = db.find(prod => prod.id === item.id);
-        if(p) p.stock -= item.qty;
-      });
-
-      msg += `--------------------------%0A*TOTAL: ${total}*%0A%0APlease confirm availability!`;
-      saveDB(); cart = []; updateCartUI(); toggleCart(false);
-      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+    function updateUI() {
+      localStorage.setItem('rizwan_pro_cart', JSON.stringify(cart));
+      document.getElementById('cart-badge').innerText = cart.reduce((s, i) => s + i.qty, 0);
     }
 
-    // START
+    function save() {
+      localStorage.setItem('rizwan_pro_db', JSON.stringify(db));
+    }
+
+    // --- INIT ---
     lucide.createIcons();
     renderShop();
-    updateCartUI();
+    updateUI();
   </script>
 </body>
 </html>
