@@ -1,239 +1,197 @@
-update 
-
-<!DOCTYPE html>
+update.                            <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rizwan Ali Jeans | Platinum Edition</title>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    /* PREMIUM UI SYSTEM */
-    :root { --primary: #000; --accent: #25D366; --bg: #fdfdfd; --card: #fff; }
-    * { box-sizing: border-box; font-family: 'Inter', sans-serif; transition: 0.3s; }
-    body { margin: 0; background: var(--bg); color: var(--primary); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizwan Ali Jeans | WhatsApp Shop</title>
 
-    /* MODERN LAYOUT ENGINE */
-    .view { display: none; padding: 40px 5%; min-height: 90vh; animation: fadeIn 0.4s ease; }
-    .view.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
 
-    /* NAVIGATION */
-    .navbar {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 15px 5%; background: var(--primary); color: white; position: sticky; top: 0; z-index: 1000;
-    }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { color: white; text-decoration: none; cursor: pointer; font-size: 13px; font-weight: 700; text-transform: uppercase; }
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
 
-    /* PRODUCT GRID & FILTERS */
-    .filter-bar { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
-    .f-btn { padding: 8px 18px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 30px; }
-    .f-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
-    .card { background: var(--card); border: 1px solid #eee; border-radius: 12px; overflow: hidden; }
-    .card img { width: 100%; height: 400px; object-fit: cover; }
-    .card-body { padding: 20px; }
+  /* HERO */
+  .hero {
+    height: 35vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                url('IMG-20260418-WA0012.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
 
-    /* REAL CART PAGE */
-    .cart-container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .cart-row { display: grid; grid-template-columns: 80px 1fr 100px 80px; gap: 20px; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+  /* PRODUCTS SECTION */
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 10px;
+  }
 
-    /* ADMIN DASHBOARD */
-    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-    .form-box { background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; }
-    .form-box input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+  .card {
+    background: white;
+    width: 320px;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease-in-out;
+  }
 
-    /* BUTTONS */
-    .btn { padding: 14px 24px; border: none; font-weight: bold; cursor: pointer; border-radius: 6px; display: inline-block; text-align: center; }
-    .btn-dark { background: var(--primary); color: white; width: 100%; }
-    .btn-whatsapp { background: var(--accent); color: white; width: 100%; }
-  </style>
+  .card:hover { transform: translateY(-8px); }
+
+  .card img {
+    width: 100%;
+    height: 480px; /* Increased height for new image aspect ratio */
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .card h3 { margin: 15px 0 5px; font-size: 22px; color: #111; }
+
+  /* SIZE SELECT */
+  .size-select {
+    width: 100%;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #fff;
+  }
+
+  /* WHATSAPP BUTTON */
+  .whatsapp-btn {
+    width: 100%;
+    padding: 14px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+  }
+
+  .whatsapp-btn:hover { background: #128C7E; }
+
+  footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .card { width: 45%; }
+  }
+  @media (max-width: 480px) {
+    .card { width: 95%; }
+  }
+</style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div onclick="showPage('shop')" style="cursor:pointer; font-weight:900; letter-spacing:2px;">RIZWAN ALI JEANS</div>
-    <div class="nav-links">
-      <a onclick="showPage('shop')">Shop</a>
-      <a onclick="showPage('cart')">Bag (<span id="bag-count">0</span>)</a>
-      <a onclick="showPage('admin')">Admin</a>
-    </div>
-  </nav>
+<header class="navbar">
+  <h1>Rizwan Ali Jeans</h1>
+</header>
 
-  <section id="page-shop" class="view active">
-    <div class="filter-bar" id="category-filters"></div>
-    <div id="shop-grid" class="grid"></div>
-  </section>
+<section class="hero">
+  <h2>Street Style Collection</h2>
+  <p>Espagne Contact: +34 602 09 78 64</p>
+</section>
 
-  <section id="page-cart" class="view">
-    <div class="cart-container">
-      <h2 style="font-size: 2rem; margin-bottom: 20px;">Your Shopping Bag</h2>
-      <div id="cart-content"></div>
-      <div id="cart-footer" style="margin-top: 30px; text-align: right;">
-        <h3 id="cart-total">Total: 0€</h3>
-        <button class="btn btn-whatsapp" onclick="simulatePaymentFlow()">CHECKOUT VIA WHATSAPP</button>
-      </div>
-    </div>
-  </section>
+<section class="products">
 
-  <section id="page-admin" class="view">
-    <div class="admin-grid">
-      <div class="form-box">
-        <h3>Add New Product</h3>
-        <input type="text" id="a-name" placeholder="Product Name">
-        <input type="text" id="a-color" placeholder="Color">
-        <input type="number" id="a-price" value="15" placeholder="Price (€)">
-        <input type="number" id="a-stock" placeholder="Stock Quantity">
-        <input type="text" id="a-img" placeholder="Image Name (e.g., IMG-20260418-WA0001.jpg)">
-        <button class="btn btn-dark" onclick="adminAdd()">ADD TO STORE</button>
-      </div>
-      <div class="form-box">
-        <h3>Live Inventory</h3>
-        <table style="width:100%; text-align:left;">
-          <thead><tr><th>Item</th><th>Stock</th><th>Action</th></tr></thead>
-          <tbody id="admin-table"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
+  <div class="card">
+    <img src="IMG-20260418-WA0012.jpg" alt="Deep Blue Jeans">
+    <h3>Deep Indigo Blue</h3>
+    <select class="size-select">
+      <option value="">Select Size</option>
+      <option value="32">32</option>
+      <option value="34">34</option>
+      <option value="36">36</option>
+    </select>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
+  </div>
 
-  <script>
-    // --- PERSISTENT DATA ENGINE ---
-    const initialProducts = [
-      { id: 1, name: "Slim Fit Blue", color: "Blue", price: 15, stock: 10, img: "IMG-20260418-WA0001.jpg" },
-      { id: 2, name: "Classic Black", color: "Black", price: 15, stock: 5, img: "IMG-20260418-WA0003.jpg" }
-    ];
+  <div class="card">
+    <img src="IMG-20260418-WA0011.jpg" alt="Classic Denim Jeans">
+    <h3>Royal Blue Denim</h3>
+    <select class="size-select">
+      <option value="">Select Size</option>
+      <option value="32">32</option>
+      <option value="34">34</option>
+      <option value="36">36</option>
+    </select>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
+  </div>
 
-    let db = JSON.parse(localStorage.getItem('rizwan_db')) || initialProducts;
-    let cart = JSON.parse(localStorage.getItem('rizwan_cart')) || [];
+  <div class="card">
+    <img src="IMG-20260418-WA0013.jpg" alt="Light Sky Blue Jeans">
+    <h3>Urban Sky Blue</h3>
+    <select class="size-select">
+      <option value="">Select Size</option>
+      <option value="32">32</option>
+      <option value="34">34</option>
+      <option value="36">36</option>
+    </select>
+    <button class="whatsapp-btn" onclick="orderNow(this)">Order on WhatsApp</button>
+  </div>
 
-    // --- NAVIGATION ---
-    function showPage(pageId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(`page-${pageId}`).classList.add('active');
-      if(pageId === 'shop') renderShop();
-      if(pageId === 'cart') renderCart();
-      if(pageId === 'admin') renderAdmin();
-      window.scrollTo(0,0);
-    }
+</section>
 
-    // --- SHOP LOGIC ---
-    function renderShop(filter = 'All') {
-      const grid = document.getElementById('shop-grid');
-      const filters = ['All', ...new Set(db.map(p => p.color))];
-      
-      document.getElementById('category-filters').innerHTML = filters.map(c => `
-        <button class="f-btn ${filter === c ? 'active' : ''}" onclick="renderShop('${c}')">${c}</button>
-      `).join('');
+<footer>
+  <p>© 2026 Rizwan Ali Jeans | Contact: +34 602 09 78 64</p>
+</footer>
 
-      const items = filter === 'All' ? db : db.filter(p => p.color === filter);
-      grid.innerHTML = items.map(p => `
-        <div class="card">
-          <img src="${p.img}">
-          <div class="card-body">
-            <h3>${p.name}</h3>
-            <p style="color:gray;">${p.color} | ${p.stock} left</p>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-              <span style="font-weight:900; font-size:1.3rem;">${p.price}€</span>
-              <select id="size-${p.id}"><option value="32">32</option><option value="34">34</option><option value="36">36</option></select>
-            </div>
-            <button class="btn btn-dark" onclick="addToBag(${p.id})" ${p.stock <= 0 ? 'disabled' : ''}>
-              ${p.stock > 0 ? 'ADD TO BAG' : 'OUT OF STOCK'}
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
+<script>
+function orderNow(button) {
+  // Provided number (+34 602 09 78 64)
+  const phoneNumber = "34602097864"; 
+  
+  const card = button.parentElement;
+  const productName = card.querySelector("h3").innerText;
+  const size = card.querySelector(".size-select").value;
 
-    // --- CART LOGIC ---
-    function addToBag(id) {
-      const size = document.getElementById(`size-${id}`).value;
-      const product = db.find(p => p.id === id);
-      const existing = cart.find(i => i.id === id && i.size === size);
+  if (size === "") {
+    alert("Please select your size (32, 34, or 36) before ordering.");
+    return;
+  }
 
-      if(existing) {
-        if(existing.qty < product.stock) existing.qty++;
-        else return alert("No more stock!");
-      } else {
-        cart.push({ ...product, size, qty: 1 });
-      }
-      save(); updateBagCount();
-      alert("Added to bag!");
-    }
+  // Create the message text for WhatsApp
+  const message = `Hello Rizwan Ali Jeans! I would like to place an order:%0A%0A*Item:* ${productName}%0A*Size:* ${size}`;
+  
+  // Create Link
+  const url = `https://wa.me/${phoneNumber}?text=${message}`;
 
-    function renderCart() {
-      const content = document.getElementById('cart-content');
-      if(cart.length === 0) {
-        content.innerHTML = "<p>Your bag is empty.</p>";
-        document.getElementById('cart-footer').style.display = 'none';
-        return;
-      }
-      document.getElementById('cart-footer').style.display = 'block';
-      content.innerHTML = cart.map((item, idx) => `
-        <div class="cart-row">
-          <img src="${item.img}" style="width:60px; border-radius:4px;">
-          <div><strong>${item.name}</strong><br><small>Size: ${item.size}</small></div>
-          <div>${item.price}€ x ${item.qty}</div>
-          <button onclick="removeCart(${idx})" style="color:red; background:none; border:none; cursor:pointer;">&times;</button>
-        </div>
-      `).join('');
-      const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      document.getElementById('cart-total').innerText = `Total: ${total}€`;
-    }
+  // Redirect to WhatsApp
+  window.open(url, '_blank');
+}
+</script>
 
-    // --- ADMIN LOGIC ---
-    function renderAdmin() {
-      const table = document.getElementById('admin-table');
-      table.innerHTML = db.map(p => `
-        <tr>
-          <td>${p.name}</td>
-          <td>${p.stock}</td>
-          <td><button onclick="adminDel(${p.id})" style="color:red; border:none; background:none; cursor:pointer;">Delete</button></td>
-        </tr>
-      `).join('');
-    }
-
-    function adminAdd() {
-      const name = document.getElementById('a-name').value;
-      const stock = parseInt(document.getElementById('a-stock').value);
-      const img = document.getElementById('a-img').value;
-      const color = document.getElementById('a-color').value;
-      if(!name || isNaN(stock)) return alert("Fill all fields");
-      db.push({ id: Date.now(), name, color, price: 15, stock, img });
-      save(); renderAdmin();
-    }
-
-    // --- SYSTEM UTILS ---
-    function removeCart(idx) { cart.splice(idx, 1); save(); renderCart(); updateBagCount(); }
-    function adminDel(id) { db = db.filter(p => p.id !== id); save(); renderAdmin(); }
-    function save() {
-      localStorage.setItem('rizwan_db', JSON.stringify(db));
-      localStorage.setItem('rizwan_cart', JSON.stringify(cart));
-    }
-    function updateBagCount() {
-      document.getElementById('bag-count').innerText = cart.reduce((acc, i) => acc + i.qty, 0);
-    }
-
-    function simulatePaymentFlow() {
-      const phone = "34602097864";
-      let msg = "*CONFIRMED ORDER*%0A------------------%0A";
-      cart.forEach(i => {
-        msg += `• ${i.name} (${i.size}) x${i.qty}%0A`;
-        const p = db.find(orig => orig.id === i.id);
-        if(p) p.stock -= i.qty;
-      });
-      const total = document.getElementById('cart-total').innerText;
-      msg += `------------------%0A*${total}*`;
-      save(); cart = []; save(); updateBagCount();
-      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-      showPage('shop');
-    }
-
-    lucide.createIcons();
-    renderShop();
-    updateBagCount();
-  </script>
 </body>
 </html>
+                           
